@@ -2,15 +2,6 @@ var net = require('net');
 var strftime = require('strftime');
 
 var server = net.createServer(function (socket){
-  date = new Date();
-  console.log('connection');
-  socket.on('end',function(){
-    console.log('discon');
-  });
-  socket.write(strftime('%F %R') + '\r\n', function(){
-    socket.end(); 
-  }); 
+    socket.end(strftime('%F %R') + '\r\n'); 
 });
-server.listen(process.argv[2], function(){
-  console.log('server started');
-});
+server.listen(process.argv[2]);
